@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ public class Payload {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long custId;
-    private int amount;
+    private BigDecimal amount;
     private String memo;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -42,11 +43,11 @@ public class Payload {
         this.custId = custId;
     }
 
-    public int getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
