@@ -1,6 +1,7 @@
-package com.example.demo.entities.db;
+package com.example.demo.entities;
 
-import javax.persistence.Column;
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,15 +12,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "customers")
+public class Customer extends AuditableEntity<String> {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(name = "user_name")
-    private String userName;
-    private String password;
-    private String role;
+    private String name;
+    private BigDecimal balance;
 }
