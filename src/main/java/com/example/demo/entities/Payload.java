@@ -9,12 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "payloads")
+@XmlRootElement(name = "payload")
 public class Payload {
     
     @Id
