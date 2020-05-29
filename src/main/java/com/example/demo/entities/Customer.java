@@ -18,6 +18,14 @@ public class Customer extends AuditableEntity<String> {
     private String name;
     private BigDecimal balance;
 
+    public Customer() {}
+
+    public Customer(Long id, String name, BigDecimal balance) {
+        this.id = id;
+        this.name = name;
+        this.balance = balance;
+    }
+
     public Long getId() {
         return id;
     }

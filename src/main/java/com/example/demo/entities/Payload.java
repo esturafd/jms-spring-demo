@@ -34,6 +34,14 @@ public class Payload {
     @JoinColumn(name = "custid")
     private Customer customer;
 
+    public Payload() {}
+
+    public Payload(Long id, BigDecimal amount, Date date) {
+        this.id = id;
+        this.amount = amount;
+        this.date = date;
+    }
+
     public Long getId() {
         return id;
     }
