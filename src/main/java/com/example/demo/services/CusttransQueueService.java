@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CusttransQueueService {
     
-    private final Logger logger = LoggerFactory.getLogger(CusttransService.class);
+    private final Logger logger = LoggerFactory.getLogger(CusttransQueueService.class);
     @Autowired private PayloadRepository payloadRepository;
     @Autowired private CustomerRepository customerRepository;
     @Autowired private EmailService emailService;
@@ -44,8 +44,8 @@ public class CusttransQueueService {
                     modifiedCustomer.getName(), 
                     payload.getDate(), 
                     payload.getCustId());
-            modifiedCustomer.getBalance().add(payload.getAmount());
-            customerRepository.save(modifiedCustomer);
+            modifiedCustomer.updateBalance(payload.getAmount());
+            payload.setCustomer(modifiedCustomer);
             payloadRepository.save(payload);
         } else {
             logger.info("the customer with id {} is not valid", payload.getCustId());

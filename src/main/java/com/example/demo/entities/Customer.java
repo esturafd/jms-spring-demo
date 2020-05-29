@@ -41,4 +41,8 @@ public class Customer extends AuditableEntity<String> {
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
+
+    public void updateBalance(BigDecimal amound) {
+        this.balance = balance.add(amound);
+    }
 }

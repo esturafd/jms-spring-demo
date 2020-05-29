@@ -7,25 +7,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "payloads")
-@XmlRootElement(name = "payload")
 public class Payload {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long custId;
     private BigDecimal amount;
     private String memo;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+
+    @Transient
+    private Long custId;
+
+    @ManyToOne
+    @JoinColumn(name = "custid")
+    private Customer customer;
 
     public Long getId() {
         return id;
@@ -65,5 +72,13 @@ public class Payload {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
