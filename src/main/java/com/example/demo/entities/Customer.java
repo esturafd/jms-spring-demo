@@ -53,4 +53,16 @@ public class Customer extends AuditableEntity<String> {
     public void updateBalance(BigDecimal amound) {
         this.balance = balance.add(amound);
     }
+
+    @Override
+    public String toString() {
+        return String.format("Customer({},{},{},{},{},{},{})", 
+                        getId(), 
+                        getName(), 
+                        getBalance(), 
+                        getCreatedBy(), 
+                        getCreateDate(), 
+                        getLastModifiedBy(), 
+                        getLastModifiedDate());
+    }
 }

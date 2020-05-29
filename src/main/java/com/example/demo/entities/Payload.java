@@ -89,4 +89,15 @@ public class Payload {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Payload({},{},{},{},{},{})", 
+                        getId(), 
+                        getAmount(), 
+                        getMemo(), 
+                        getDate(), 
+                        getCustId(), 
+                        getCustomer());
+    }
 }
