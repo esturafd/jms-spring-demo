@@ -10,7 +10,9 @@ import com.example.demo.repositories.CustomerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CustomerService {
     
     private final Logger logger = LoggerFactory.getLogger(CustomerService.class);
@@ -29,7 +31,7 @@ public class CustomerService {
 
     public Customer create(Customer customer) {
         logger.info("create customer {}", customer);
-        if (customer.getId() > 0 || repository.findById(customer.getId()).isPresent()) {
+        if (customer.getId() != null && (customer.getId() <= 0 || repository.findById(customer.getId()).isPresent())) {
             throw new EntityExistsException(String.format("customer %d exist", customer.getId()));
         }
         return repository.save(customer);

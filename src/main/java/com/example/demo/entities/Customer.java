@@ -56,7 +56,7 @@ public class Customer extends AuditableEntity<String> {
 
     @Override
     public String toString() {
-        return String.format("Customer({},{},{},{},{},{},{})", 
+        return String.format("Customer(%d,%s,%.2f,%s,%s,%s,%s)", 
                         getId(), 
                         getName(), 
                         getBalance(), 
