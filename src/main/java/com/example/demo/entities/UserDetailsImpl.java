@@ -17,7 +17,7 @@ public class UserDetailsImpl implements UserDetails {
     public UserDetailsImpl(User user) {
         this.userName = user.getUserName();
         this.password = user.getPassword();
-        this.authorities = Arrays.asList(new SimpleGrantedAuthority(user.getRole()));
+        this.authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
     }
 
     @Override
@@ -37,17 +37,17 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
