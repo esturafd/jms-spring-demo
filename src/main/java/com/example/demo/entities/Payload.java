@@ -92,7 +92,7 @@ public class Payload {
 
     @Override
     public String toString() {
-        return String.format("Payload({},{},{},{},{},{})", 
+        return String.format("Payload(%d,%.2f,%s,%s,%d,%s)", 
                         getId(), 
                         getAmount(), 
                         getMemo(), 

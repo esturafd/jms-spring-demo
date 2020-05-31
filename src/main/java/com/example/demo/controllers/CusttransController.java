@@ -6,6 +6,7 @@ import com.example.demo.services.CusttransService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ public class CusttransController {
     @Value("${demo.activemq.endpoint}") private String endpoint;
 
     @PostMapping
-    public void sendPayload(Payload payload) {
+    public void sendPayload(@RequestBody Payload payload) {
         service.sendToQueue(endpoint, payload);
     }
 }

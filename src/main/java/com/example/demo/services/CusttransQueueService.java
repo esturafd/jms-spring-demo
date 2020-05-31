@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CusttransQueueService {
@@ -35,6 +36,12 @@ public class CusttransQueueService {
         }
     }
 
+    private void save(Payload payload) {
+        customerRepository.save(payload.getCustomer());
+        payloadRepository.save(payload);
+    }
+
+    @Transactional
     public void readQueue(Payload payload) {
         Optional<Customer> customer = validCustomer(payload);
         if (customer.isPresent()) {
@@ -46,7 +53,7 @@ public class CusttransQueueService {
                     payload.getCustId());
             modifiedCustomer.updateBalance(payload.getAmount());
             payload.setCustomer(modifiedCustomer);
-            payloadRepository.save(payload);
+            save(payload);
         } else {
             logger.info("the customer with id {} is not valid", payload.getCustId());
             emailService.send();
